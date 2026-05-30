@@ -20,17 +20,15 @@ Use this crate to embed Inherit's templating logic into your own tools.
 
 ## Quick Start
 
-Add to your `Cargo.toml`:
+Add to your dependencies:
 
-``toml
-[dependencies]
-inherit-core = "0.1"
-kissreplace = "0.1"  # for Variables type
-``
+```toml
+cargo add inherit-core
+```
 
 Basic usage:
 
-``rust
+```rust
 use inherit_core::{load_template, process_template, ProcessOptions, Variables};
 use std::path::Path;
 
@@ -51,7 +49,7 @@ let result = process_template(
 )?;
 
 println!("Generated {} files", result.processed_files);
-``
+```
 
 ## Documentation
 

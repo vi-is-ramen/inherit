@@ -12,15 +12,15 @@ Define variables in `Inherit.toml`, use `@VAR@` placeholders in your files, and 
 
 ## Installation
 
-``sh
+```sh
 cargo install cargo-inherit
-``
+```
 
 ## Quick Start
 
 Generate a project from a GitHub template:
 
-``sh
+```sh
 # Basic usage
 cargo inherit user/template-repo
 
@@ -29,11 +29,11 @@ cargo inherit user/template-repo to my-project
 
 # Using an alias (configured in ~/.config/inherit/config.toml)
 cargo inherit rust-lib to my-lib
-``
+```
 
 Template example (`Inherit.toml`):
 
-``toml
+```toml
 [template]
 name = "rust-lib"
 description = "Minimal Rust library template"
@@ -48,18 +48,18 @@ post_create = [
   "cargo fmt",
   "cargo clippy --fix --allow-dirty"
 ]
-``
+```
 
 Use variables in your template files:
 
-``toml
+```toml
 # Cargo.toml template
 [package]
 name = "@PROJECT_NAME@"
 version = "0.1.0"
 authors = ["@AUTHOR@"]
 license = "@LICENSE@"
-``
+```
 
 ## Configuration
 

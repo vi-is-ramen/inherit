@@ -20,16 +20,15 @@ Designed for build tools, code generators, and configuration templating where si
 
 ## Quick Start
 
-Add to your `Cargo.toml`:
+Add to your dependencies:
 
-``toml
-[dependencies]
-kissreplace = "0.1"
-``
+```shell
+cargo add kissreplace
+```
 
 Basic usage:
 
-``rust
+```rust
 use kissreplace::{KissReplace, Variables};
 
 let mut vars = Variables::new();
@@ -43,7 +42,7 @@ assert_eq!(result, "crate my_app v0.1.0");
 let paths = vars.replace_paths(vec![
     std::path::PathBuf::from("src/@PROJECT@/lib.rs"),
 ]);
-``
+```
 
 ## Documentation
 

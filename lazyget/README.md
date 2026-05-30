@@ -19,16 +19,15 @@ Perfect for build tools, template engines, or any workflow where you want to avo
 
 ## Quick Start
 
-Add to your `Cargo.toml`:
+Add to your dependencies:
 
-``toml
-[dependencies]
-lazyget = "0.1"
-``
+```shell
+cargo add lazyget
+```
 
 Basic usage:
 
-``rust
+```rust
 use lazyget::{fetch, make_id};
 
 let cache_dir = std::env::temp_dir().join("my-app-cache");
@@ -41,7 +40,7 @@ let path = fetch(&cache_dir, &id, |dir| {
 })?;
 
 println!("Artifact ready at: {:?}", path);
-``
+```
 
 ## Documentation
 
