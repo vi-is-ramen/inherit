@@ -14,7 +14,7 @@ pub fn resolve_template(name: &str, cfg: &Config) -> Result<TemplateSource> {
     if expanded.starts_with("file://")
         || expanded.starts_with("http://")
         || expanded.starts_with("https://")
-        || expanded.starts_with('/')
+        || std::path::Path::new(expanded).is_absolute()
     {
         return Ok(TemplateSource::Url(expanded.to_string()));
     }

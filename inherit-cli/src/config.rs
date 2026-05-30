@@ -89,7 +89,12 @@ pub fn patch_table_entry(path: &Path, table: &str, key: &str, value: &str) -> Re
     let mut lines: Vec<String> = content.lines().map(|l| l.to_string()).collect();
 
     let table_header = format!("[{}]", table);
-    let entry_line = format!("{} = \"{}\"", key, value.escape_default());
+    let normalized_value = if Path::new(value).is_absolute() {
+        value.replace('\\', "/")
+    } else {
+        value.to_string()
+    };
+    let entry_line = format!("{} = \"{}\"", key, normalized_value.escape_default());
 
     // Searching section
     let header_idx = lines.iter().position(|l| l.trim() == table_header);

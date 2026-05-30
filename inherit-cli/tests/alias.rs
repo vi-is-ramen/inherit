@@ -113,7 +113,7 @@ fn test_use_alias_for_generation() {
     });
 
     let tpl_path = tpl.to_string_lossy().replace('\\', "/");
-    
+
     env.write_config(&format!(
         r#"
 [aliases]
