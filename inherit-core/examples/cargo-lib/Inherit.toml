@@ -1,0 +1,12 @@
+[template]
+name = "cargo-lib"
+description = "Minimal Rust library template"
+
+[variables]
+PROJECT_NAME = "Name of the project"
+AUTHOR = "Author name and email"
+VERSION = "Initial version"
+DESCRIPTION = "Short description of the library"
+
+[hooks]
+post_create = []

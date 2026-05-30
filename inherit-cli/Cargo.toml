@@ -1,0 +1,28 @@
+[package]
+name = "cargo-inherit"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Generate new projects with ease!"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[dependencies]
+inherit-core = { path = "../inherit-core" }
+lazyget = { path = "../lazyget" }
+kissreplace = { path = "../kissreplace" }
+anyhow = "1.0"
+console = "0.16.3"
+dirs = "6.0.0"
+inquire = "0.9.4"
+serde = { version = "1.0", features = ["derive"] }
+toml = "1.1.2"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+assert_fs = "1.1"
+predicates = "3.1"
+tempfile = "3.8"

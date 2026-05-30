@@ -1,0 +1,59 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'  # v0.1.0, v1.2.3-pre, etc.
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Dwarnings
+
+jobs:
+  publish:
+    name: Publish to crates.io
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Cargo cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Run all checks
+        run: just check
+
+      - name: Verify tag matches workspace version
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          WORKSPACE_VERSION=$(grep '^version =' Cargo.toml | head -1 | cut -d'"' -f2)
+          if [ "$TAG_VERSION" != "$WORKSPACE_VERSION" ]; then
+            echo "::error::Tag version ($TAG_VERSION) does not match workspace version ($WORKSPACE_VERSION)"
+            exit 1
+          fi
+          echo "✓ Version check passed: $TAG_VERSION"
+
+      - name: Login to crates.io
+        run: cargo login "${{ secrets.CRATES_IO_TOKEN }}"
+
+      - name: Publish kissreplace
+        run: cargo publish -p kissreplace --no-verify
+
+      - name: Publish lazyget
+        run: cargo publish -p lazyget --no-verify
+
+      - name: Publish inherit-core
+        run: cargo publish -p inherit-core --no-verify
+
+      - name: Publish cargo-inherit
+        run: cargo publish -p cargo-inherit --no-verify
+
+      - name: Wait for index update (optional)
+        run: sleep 30
+        continue-on-error: true

@@ -1,0 +1,19 @@
+[workspace]
+resolver = "3"
+members = ["inherit-cli","inherit-core","kissreplace", "lazyget"]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+authors = ["Ivan Chetchasov <vi.is.chapmann@gmail.com>"]
+
+[workspace.dependencies]
+thiserror = "2.0.18"
+sha2 = "0.11.0"
+hex = "0.4"
+
+[workspace.dev-dependencies.cargo-husky]
+version = "1"
+default-features = false # Disable features which are enabled by default
+features = ["precommit-hook", "run-cargo-test", "run-cargo-clippy"]

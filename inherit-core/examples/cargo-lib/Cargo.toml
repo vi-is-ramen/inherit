@@ -1,0 +1,8 @@
+[package]
+name = "@PROJECT_NAME@"
+version = "@VERSION@"
+edition = "2021"
+authors = ["@AUTHOR@"]
+description = "@DESCRIPTION@"
+
+[dependencies]
