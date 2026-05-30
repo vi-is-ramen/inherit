@@ -30,7 +30,7 @@ fn test_generate_basic() {
     let env = TestEnv::new();
     let tpl = setup_template(env.tmp.path());
 
-    env.write_config(r#"[defaults]\nPROJECT_NAME = "myproj"\nAUTHOR = "Alice"\n"#);
+    env.write_config("[defaults]\nPROJECT_NAME = \"myproj\"\nAUTHOR = \"Alice\"\n");
 
     let target = env.tmp.path().join("output");
 
