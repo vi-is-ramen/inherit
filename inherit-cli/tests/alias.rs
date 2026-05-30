@@ -112,12 +112,14 @@ fn test_use_alias_for_generation() {
         std::fs::write(repo.join("marker.txt"), "ok").unwrap();
     });
 
+    let tpl_path = tpl.to_string_lossy().replace('\\', "/");
+    
     env.write_config(&format!(
         r#"
 [aliases]
 mytpl = "{}"
 "#,
-        tpl.to_string_lossy()
+        tpl_path
     ));
 
     let target = env.tmp.path().join("output");
